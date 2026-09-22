@@ -24,10 +24,10 @@
 ### Task 1: Camada de dados — campo `dataHora`, ordenação e migração
 
 **Files:**
-- Modify: `app/src/main/java/carreiras/com/github/todolist/data/Tarefa.kt`
-- Modify: `app/src/main/java/carreiras/com/github/todolist/data/TarefaDao.kt`
-- Modify: `app/src/main/java/carreiras/com/github/todolist/data/TarefaDatabase.kt`
-- Test: `app/src/androidTest/java/carreiras/com/github/todolist/data/TarefaDaoTest.kt`
+- Modify: `app/src/main/java/pedrosalimon/com/github/todolist/data/Tarefa.kt`
+- Modify: `app/src/main/java/pedrosalimon/com/github/todolist/data/TarefaDao.kt`
+- Modify: `app/src/main/java/pedrosalimon/com/github/todolist/data/TarefaDatabase.kt`
+- Test: `app/src/androidTest/java/pedrosalimon/com/github/todolist/data/TarefaDaoTest.kt`
 
 **Interfaces:**
 - Produces: `Tarefa.dataHora: Long?` (default `null`); `TarefaDao.listarTodas(): Flow<List<Tarefa>>` agora ordena tarefas com prazo primeiro (mais próximas), avulsas por último; `TarefaDatabase` em `version = 2` com `fallbackToDestructiveMigration()`
@@ -54,7 +54,7 @@ Adicionar ao final da classe `TarefaDaoTest`, antes da última chave `}`:
 
 - [ ] **Step 2: Rodar o teste e confirmar que falha**
 
-Run: `./gradlew connectedDebugAndroidTest --tests carreiras.com.github.todolist.data.TarefaDaoTest` (requer emulador/dispositivo conectado)
+Run: `./gradlew connectedDebugAndroidTest --tests pedrosalimon.com.github.todolist.data.TarefaDaoTest` (requer emulador/dispositivo conectado)
 Expected: FALHA de compilação — `Tarefa` ainda não tem o parâmetro `dataHora`
 
 - [ ] **Step 3: Adicionar o campo `dataHora` à entidade**
@@ -62,7 +62,7 @@ Expected: FALHA de compilação — `Tarefa` ainda não tem o parâmetro `dataHo
 Editar `Tarefa.kt` — arquivo completo:
 
 ```kotlin
-package carreiras.com.github.todolist.data
+package pedrosalimon.com.github.todolist.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -83,7 +83,7 @@ data class Tarefa(
 Editar `TarefaDao.kt` — arquivo completo:
 
 ```kotlin
-package carreiras.com.github.todolist.data
+package pedrosalimon.com.github.todolist.data
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -117,7 +117,7 @@ interface TarefaDao {
 Editar `TarefaDatabase.kt` — arquivo completo:
 
 ```kotlin
-package carreiras.com.github.todolist.data
+package pedrosalimon.com.github.todolist.data
 
 import android.content.Context
 import androidx.room.Database
@@ -150,13 +150,13 @@ abstract class TarefaDatabase : RoomDatabase() {
 
 - [ ] **Step 6: Rodar o teste e confirmar que passa**
 
-Run: `./gradlew connectedDebugAndroidTest --tests carreiras.com.github.todolist.data.TarefaDaoTest`
+Run: `./gradlew connectedDebugAndroidTest --tests pedrosalimon.com.github.todolist.data.TarefaDaoTest`
 Expected: PASS — todos os testes da classe, incluindo o novo
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add app/src/main/java/carreiras/com/github/todolist/data/Tarefa.kt app/src/main/java/carreiras/com/github/todolist/data/TarefaDao.kt app/src/main/java/carreiras/com/github/todolist/data/TarefaDatabase.kt app/src/androidTest/java/carreiras/com/github/todolist/data/TarefaDaoTest.kt
+git add app/src/main/java/pedrosalimon/com/github/todolist/data/Tarefa.kt app/src/main/java/pedrosalimon/com/github/todolist/data/TarefaDao.kt app/src/main/java/pedrosalimon/com/github/todolist/data/TarefaDatabase.kt app/src/androidTest/java/pedrosalimon/com/github/todolist/data/TarefaDaoTest.kt
 git commit -m "feat: adicionar campo dataHora e ordenar tarefas por prazo"
 ```
 
@@ -165,8 +165,8 @@ git commit -m "feat: adicionar campo dataHora e ordenar tarefas por prazo"
 ### Task 2: Utilitário de conversão de data/hora
 
 **Files:**
-- Create: `app/src/main/java/carreiras/com/github/todolist/util/DataHoraUtil.kt`
-- Test: `app/src/test/java/carreiras/com/github/todolist/util/DataHoraUtilTest.kt`
+- Create: `app/src/main/java/pedrosalimon/com/github/todolist/util/DataHoraUtil.kt`
+- Test: `app/src/test/java/pedrosalimon/com/github/todolist/util/DataHoraUtilTest.kt`
 
 **Interfaces:**
 - Consumes: nada (funções puras, `java.util.Calendar`/`SimpleDateFormat`)
@@ -178,10 +178,10 @@ git commit -m "feat: adicionar campo dataHora e ordenar tarefas por prazo"
 
 - [ ] **Step 1: Escrever os testes que falham**
 
-Criar `app/src/test/java/carreiras/com/github/todolist/util/DataHoraUtilTest.kt`:
+Criar `app/src/test/java/pedrosalimon/com/github/todolist/util/DataHoraUtilTest.kt`:
 
 ```kotlin
-package carreiras.com.github.todolist.util
+package pedrosalimon.com.github.todolist.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -241,15 +241,15 @@ class DataHoraUtilTest {
 
 - [ ] **Step 2: Rodar os testes e confirmar que falham**
 
-Run: `./gradlew testDebugUnitTest --tests carreiras.com.github.todolist.util.DataHoraUtilTest`
+Run: `./gradlew testDebugUnitTest --tests pedrosalimon.com.github.todolist.util.DataHoraUtilTest`
 Expected: FALHA de compilação — `DataHoraUtil.kt` ainda não existe
 
 - [ ] **Step 3: Implementar o utilitário**
 
-Criar `app/src/main/java/carreiras/com/github/todolist/util/DataHoraUtil.kt`:
+Criar `app/src/main/java/pedrosalimon/com/github/todolist/util/DataHoraUtil.kt`:
 
 ```kotlin
-package carreiras.com.github.todolist.util
+package pedrosalimon.com.github.todolist.util
 
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -290,13 +290,13 @@ fun combinarDataHora(ano: Int, mes: Int, dia: Int, hora: Int, minuto: Int): Long
 
 - [ ] **Step 4: Rodar os testes e confirmar que passam**
 
-Run: `./gradlew testDebugUnitTest --tests carreiras.com.github.todolist.util.DataHoraUtilTest`
+Run: `./gradlew testDebugUnitTest --tests pedrosalimon.com.github.todolist.util.DataHoraUtilTest`
 Expected: PASS — 4 testes passando
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add app/src/main/java/carreiras/com/github/todolist/util/DataHoraUtil.kt app/src/test/java/carreiras/com/github/todolist/util/DataHoraUtilTest.kt
+git add app/src/main/java/pedrosalimon/com/github/todolist/util/DataHoraUtil.kt app/src/test/java/pedrosalimon/com/github/todolist/util/DataHoraUtilTest.kt
 git commit -m "feat: adicionar utilitario de conversao de data/hora"
 ```
 
@@ -305,10 +305,10 @@ git commit -m "feat: adicionar utilitario de conversao de data/hora"
 ### Task 3: Formulário — Switch, DatePicker, TimePicker e validação
 
 **Files:**
-- Modify: `app/src/main/java/carreiras/com/github/todolist/ui/FormularioTarefaScreen.kt`
+- Modify: `app/src/main/java/pedrosalimon/com/github/todolist/ui/FormularioTarefaScreen.kt`
 
 **Interfaces:**
-- Consumes: `combinarDataHora`, `extrairDataDoDatePicker`, `paraMillisUtcDoDatePicker` de `carreiras.com.github.todolist.util` (Task 2); `Tarefa.dataHora: Long?` (Task 1)
+- Consumes: `combinarDataHora`, `extrairDataDoDatePicker`, `paraMillisUtcDoDatePicker` de `pedrosalimon.com.github.todolist.util` (Task 2); `Tarefa.dataHora: Long?` (Task 1)
 - Produces: `FormularioTarefaContent` com novo parâmetro `dataHoraInicial: Long?` e callback `onSalvar: (titulo: String, descricao: String, dataHora: Long?) -> Unit`
 
 - [ ] **Step 1: Substituir o conteúdo do arquivo**
@@ -316,7 +316,7 @@ git commit -m "feat: adicionar utilitario de conversao de data/hora"
 Editar `FormularioTarefaScreen.kt` — arquivo completo:
 
 ```kotlin
-package carreiras.com.github.todolist.ui
+package pedrosalimon.com.github.todolist.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -353,11 +353,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import carreiras.com.github.todolist.data.Tarefa
-import carreiras.com.github.todolist.util.combinarDataHora
-import carreiras.com.github.todolist.util.extrairDataDoDatePicker
-import carreiras.com.github.todolist.util.paraMillisUtcDoDatePicker
-import carreiras.com.github.todolist.viewmodel.TarefaViewModel
+import pedrosalimon.com.github.todolist.data.Tarefa
+import pedrosalimon.com.github.todolist.util.combinarDataHora
+import pedrosalimon.com.github.todolist.util.extrairDataDoDatePicker
+import pedrosalimon.com.github.todolist.util.paraMillisUtcDoDatePicker
+import pedrosalimon.com.github.todolist.viewmodel.TarefaViewModel
 import java.util.Calendar
 
 @Composable
@@ -607,7 +607,7 @@ Abrir `FormularioTarefaScreen.kt` no Android Studio e checar as 3 `@Preview`: "N
 - [ ] **Step 4: Commit**
 
 ```bash
-git add app/src/main/java/carreiras/com/github/todolist/ui/FormularioTarefaScreen.kt
+git add app/src/main/java/pedrosalimon/com/github/todolist/ui/FormularioTarefaScreen.kt
 git commit -m "feat: adicionar selecao de data e hora no formulario de tarefa"
 ```
 
@@ -616,10 +616,10 @@ git commit -m "feat: adicionar selecao de data e hora no formulario de tarefa"
 ### Task 4: Lista — exibição do prazo e destaque de atraso
 
 **Files:**
-- Modify: `app/src/main/java/carreiras/com/github/todolist/ui/ListaTarefasScreen.kt`
+- Modify: `app/src/main/java/pedrosalimon/com/github/todolist/ui/ListaTarefasScreen.kt`
 
 **Interfaces:**
-- Consumes: `formatarDataHora(millis: Long): String` de `carreiras.com.github.todolist.util` (Task 2); `Tarefa.dataHora: Long?` (Task 1)
+- Consumes: `formatarDataHora(millis: Long): String` de `pedrosalimon.com.github.todolist.util` (Task 2); `Tarefa.dataHora: Long?` (Task 1)
 - Produces: nada consumido por outros arquivos (mudança visual isolada em `TarefaItem`)
 
 - [ ] **Step 1: Adicionar imports necessários**
@@ -629,7 +629,7 @@ Em `ListaTarefasScreen.kt`, adicionar às importações existentes (mantendo ord
 ```kotlin
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import carreiras.com.github.todolist.util.formatarDataHora
+import pedrosalimon.com.github.todolist.util.formatarDataHora
 ```
 
 - [ ] **Step 2: Exibir o prazo em `TarefaItem`**
@@ -705,7 +705,7 @@ Checar as novas previews "Item com prazo futuro" (texto normal, data de amanhã)
 - [ ] **Step 6: Commit**
 
 ```bash
-git add app/src/main/java/carreiras/com/github/todolist/ui/ListaTarefasScreen.kt
+git add app/src/main/java/pedrosalimon/com/github/todolist/ui/ListaTarefasScreen.kt
 git commit -m "feat: exibir prazo da tarefa na lista com destaque de atraso"
 ```
 

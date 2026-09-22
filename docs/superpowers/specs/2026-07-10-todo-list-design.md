@@ -37,7 +37,7 @@ Cada camada tem responsabilidade única e se comunica somente com a camada imedi
 ## Estrutura de Pacotes
 
 ```
-carreiras.com.github.todolist/
+pedrosalimon.com.github.todolist/
 ├── data/
 │   ├── Tarefa.kt
 │   ├── TarefaDao.kt

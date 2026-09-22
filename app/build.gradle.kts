@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "carreiras.com.github.todolist"
+    namespace = "pedrosalimon.com.github.todolist"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "carreiras.com.github.todolist"
+        applicationId = "pedrosalimon.com.github.todolist"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
